@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { Audio } from 'react-loader-spinner';
 
 import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
-import Searchbar from './Searchbar/Searchbar';
+import {Searchbar} from './Searchbar/Searchbar';
 import getItems from '../Api/Api';
 import ImageGallery from './ImageGallery/ImageGallery';
 import Button from './Button/Button';

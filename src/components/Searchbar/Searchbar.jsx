@@ -1,31 +1,25 @@
 import PropTypes from 'prop-types';
-import { Component } from 'react';
+import { useState } from 'react';
 
 import s from './Searchbar.module.css';
 
-const INITIAL_STATE = {
-  inputValue: '',
-};
-class Searchbar extends Component {
-  state = { ...INITIAL_STATE };
-
-  handleChange = evt => {
-    this.setState({ inputValue: evt.target.value });
+export const Searchbar = ({handleSubmitValue}) => {
+  const [inputValue, setInputValue] = useState('');
+ 
+ const handleChange = evt => {
+    setInputValue(evt.target.value)
   };
 
-  hendleSubmit = e => {
+   const hendleSubmit = e => {
     e.preventDefault();
-    this.props.handleSubmitValue(this.state.inputValue);
-    this.reset();
+    handleSubmitValue(inputValue);
+    reset();
   };
 
-  reset = () => {
-    this.setState(INITIAL_STATE);
+   const reset = () => {
+    setInputValue('')
   };
-
-  render() {
-    const { hendleSubmit, handleChange } = this;
-    return (
+  return (
       <>
         <header className={s.Searchbar}>
           <form className={s.SearchForm} onSubmit={hendleSubmit}>
@@ -38,7 +32,7 @@ class Searchbar extends Component {
               type="text"
               autoComplete="off"
               autoFocus
-              value={this.state.inputValue}
+              value={inputValue}
               placeholder="Search images and photos"
               onChange={handleChange}
             />
@@ -46,8 +40,8 @@ class Searchbar extends Component {
         </header>
       </>
     );
-  }
 }
+
 
 export default Searchbar;
 

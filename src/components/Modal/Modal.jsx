@@ -1,43 +1,40 @@
 import PropTypes from 'prop-types';
-import { Component } from 'react';
+import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
 import s from './Modal.module.css';
 
 const modalRoot = document.querySelector('#modal-root');
 
-class Modal extends Component {
-  componentDidMount() {
-    window.addEventListener('keydown', this.onKeyDown);
-  }
+export const Modal = ({ toogleModal, imgId }) => {
+  useEffect(() => {
+    window.addEventListener('keydown', onKeyDown);
+    return () => {
+      window.removeEventListener('keydown', onKeyDown);
+    };
+  });
 
-  componentWillUnmount() {
-    window.removeEventListener('keydown', this.onKeyDown);
-  }
-
-  onKeyDown = e => {
-    if (e.code === 'Escape') {
-      this.props.toogleModal('');
-    }
-  };
-
-  onOverlayClick = e => {
+  const onOverlayClick = e => {
     if (e.target === e.currentTarget) {
-      this.props.toogleModal('');
+      toogleModal('');
     }
   };
-  render() {
-    const { imgId } = this.props;
-    return createPortal(
-      <div className={s.Overlay} onClick={this.onOverlayClick}>
-        <div className={s.Modal}>
-          <img src={imgId} alt="" />
-        </div>
-      </div>,
-      modalRoot
-    );
-  }
-}
+
+  const onKeyDown = e => {
+    console.log('click');
+    if (e.code === 'Escape') {
+      toogleModal('');
+    }
+  };
+  return createPortal(
+    <div className={s.Overlay} onClick={onOverlayClick}>
+      <div className={s.Modal}>
+        <img src={imgId} alt="" />
+      </div>
+    </div>,
+    modalRoot
+  );
+};
 
 export default Modal;
 
