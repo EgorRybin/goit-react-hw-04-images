@@ -20,8 +20,7 @@ export const Modal = ({ toogleModal, imgId }) => {
     }
   };
 
-  const onKeyDown = e => {
-    console.log('click');
+  const onKeyDown = e => {  
     if (e.code === 'Escape') {
       toogleModal('');
     }

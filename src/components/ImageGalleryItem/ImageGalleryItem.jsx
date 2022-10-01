@@ -27,7 +27,7 @@ ImageGalleryItem.propTypes = {
   toogleModal: PropTypes.func.isRequired,
   array: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
       webformatURL: PropTypes.string.isRequired,
       largeImageURL: PropTypes.string.isRequired,
     })

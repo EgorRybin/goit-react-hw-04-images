@@ -8,6 +8,7 @@ async function getItems(count, inputValue) {
       `https://pixabay.com/api/?q=${inputValue}&page=${count}&key=${PIXABAY_KYE}&image_type=photo&orientation=horizontal&per_page=12`
     );
     return response;
+
   } catch (error) {
     console.error(error);
   }
