@@ -39,4 +39,5 @@ export default Modal;
 
 Modal.propTypes = {
   toogleModal: PropTypes.func.isRequired,
+  imgId: PropTypes.string.isRequired
 };

@@ -26,6 +26,7 @@ export const App = () => {
       fetchData();
       setIsLoading(false);
     }
+    
   }, [count, inputValue]);
 
   const toogleModal = img => {
@@ -33,6 +34,10 @@ export const App = () => {
   };
 
   const handleSubmitValue = data => {
+    if (data === '') {
+      alert('Здається, чогось не вистачає...')
+      return
+    }
     if (data !== inputValue) {
       setIsLoading(true);
       setInputValue(data);
