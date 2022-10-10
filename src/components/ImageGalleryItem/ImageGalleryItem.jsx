@@ -1,9 +1,13 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
+import { useContext } from 'react';
 
 import s from './ImageGalleryItem.module.css';
+import { context } from 'components/Context/Context';
 
-const ImageGalleryItem = ({ array, toogleModal }) => {
-  return array.map(({ id, webformatURL, largeImageURL }) => (
+const ImageGalleryItem = () => {
+  const value = useContext(context);
+  const { images, toogleModal } = value;
+  return images.map(({ id, webformatURL, largeImageURL }) => (
     <li
       className={s.ImageGalleryItem}
       key={id}
@@ -23,13 +27,13 @@ const ImageGalleryItem = ({ array, toogleModal }) => {
 
 export default ImageGalleryItem;
 
-ImageGalleryItem.propTypes = {
-  toogleModal: PropTypes.func.isRequired,
-  array: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      webformatURL: PropTypes.string.isRequired,
-      largeImageURL: PropTypes.string.isRequired,
-    })
-  ),
-};
+// ImageGalleryItem.propTypes = {
+//   toogleModal: PropTypes.func.isRequired,
+  // array: PropTypes.arrayOf(
+  //   PropTypes.shape({
+  //     id: PropTypes.number.isRequired,
+  //     webformatURL: PropTypes.string.isRequired,
+  //     largeImageURL: PropTypes.string.isRequired,
+  //   })
+  // ),
+// };

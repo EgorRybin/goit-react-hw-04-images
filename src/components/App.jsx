@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Audio } from 'react-loader-spinner';
 
 import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
@@ -8,13 +8,17 @@ import ImageGallery from './ImageGallery/ImageGallery';
 import Button from './Button/Button';
 import Modal from './Modal/Modal';
 import s from './App.module.css';
+import { context } from './Context/Context';
 
 export const App = () => {
   const [inputValue, setInputValue] = useState('');
   const [count, setCount] = useState(1);
-  const [images, setImages] = useState([]);
+  // const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [showModal, setShowModal] = useState('');
+  // const [showModal, setShowModal] = useState('');
+
+  const value = useContext(context);
+  const { images, setImages, toogleModal, showModal } = value;
 
   useEffect(() => {
     if (inputValue) {
@@ -27,11 +31,11 @@ export const App = () => {
       setIsLoading(false);
     }
     
-  }, [count, inputValue]);
+  }, [count, inputValue, setImages]);
 
-  const toogleModal = img => {
-    setShowModal(img);
-  };
+  // const toogleModal = img => {
+  //   setShowModal(img);
+  // };
 
   const handleSubmitValue = data => {
     if (data === '') {
@@ -55,7 +59,7 @@ export const App = () => {
       <ErrorBoundary>
         {showModal && <Modal toogleModal={toogleModal} imgId={showModal} />}
         <Searchbar handleSubmitValue={handleSubmitValue} />
-        <ImageGallery array={images} toogleModal={toogleModal} />
+        <ImageGallery />
         {isLoading && (
           <Audio
             height="80"
